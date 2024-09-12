@@ -14,9 +14,14 @@ Before you begin, ensure you have the following installed on your machine:
 You can download and install Node.js from [here](https://nodejs.org/). npm is bundled with Node.js, so installing Node will automatically set up npm for you.
 
 ## Table of Contents
-- [1. Demo](#1-demo)
-- [2. Google Gemini AI API Setup](#2-google-gemini-ai-api-setup)
-- [3. Install Dependencies And Run The Project](#3-install-dependencies-and-run-the-project)
+[Essay Task 2 Used](https://docs.google.com/document/d/1Yc4NtBm3Ifdrl5NOl3Xan7BH5lbU7sg0uaRYkOPyb9M/edit?usp=sharing)
+
+[Essay Task 1 Used](https://docs.google.com/document/d/1nb-90inXnesiU6X1qHa6JVt16cB4yhLDwDpbXmPT3Zo/edit?usp=sharing)
+
+[Prompt Used For Task 2](https://docs.google.com/document/d/1pVRshMAUMMl6l1twTe6zDS6oD3Hgv-4XwXv9Xg_5gnI/edit?usp=sharing)
+
+[Prompt Used For Task 1](https://docs.google.com/document/d/1nb-90inXnesiU6X1qHa6JVt16cB4yhLDwDpbXmPT3Zo/edit?usp=sharing)
+
 
 
 ---

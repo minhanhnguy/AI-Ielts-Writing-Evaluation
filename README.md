@@ -13,25 +13,15 @@ Before you begin, ensure you have the following installed on your machine:
 
 You can download and install Node.js from [here](https://nodejs.org/). npm is bundled with Node.js, so installing Node will automatically set up npm for you.
 
-## Table of Contents
+## 1. Demo
+
 [Essay Task 2 Used](https://docs.google.com/document/d/1Yc4NtBm3Ifdrl5NOl3Xan7BH5lbU7sg0uaRYkOPyb9M/edit?usp=sharing)
 
 [Essay Task 1 Used](https://docs.google.com/document/d/1nb-90inXnesiU6X1qHa6JVt16cB4yhLDwDpbXmPT3Zo/edit?usp=sharing)
 
 [Prompt Used For Task 2](https://docs.google.com/document/d/1pVRshMAUMMl6l1twTe6zDS6oD3Hgv-4XwXv9Xg_5gnI/edit?usp=sharing)
 
-[Prompt Used For Task 1](https://docs.google.com/document/d/1nb-90inXnesiU6X1qHa6JVt16cB4yhLDwDpbXmPT3Zo/edit?usp=sharing)
-
-
-
----
-
-## 1. Demo
-
-[Essay Used](https://docs.google.com/document/d/1Yc4NtBm3Ifdrl5NOl3Xan7BH5lbU7sg0uaRYkOPyb9M/edit?usp=sharing)
-
-[Prompt Used](https://docs.google.com/document/d/1pVRshMAUMMl6l1twTe6zDS6oD3Hgv-4XwXv9Xg_5gnI/edit?usp=sharing)
-
+[Prompt Used For Task 1](https://docs.google.com/document/d/1LSgd5uxf1EZlzHWXrEMwGMYRsARwOvOGyOQlEW7PeXo/edit?usp=sharing)
 
 
 https://github.com/user-attachments/assets/dc87bca1-7fda-4f5d-adc8-c3bc9aaed7b7
@@ -48,19 +38,11 @@ https://github.com/user-attachments/assets/dc87bca1-7fda-4f5d-adc8-c3bc9aaed7b7
 4. Click on **Create API key**.
 5. Copy the generated API key. You'll need this to configure the Google Gemini API in the project.
 
-### Step 2: Add API Key to Project
-
-1. In the `/src` directory of your project, create a new file called `config.jsx`.
-2. Add the following code, replacing `YOUR_API_KEY` with the API key you copied earlier:
-
-   ```javascript
-   export const API_KEY = "YOUR_API_KEY";
-
-## 3. Install Dependencies And Run The Project
+## 2. Install Dependencies And Run The Project
 In your terminal, run the following command to clone the project:
 
    ```bash
-   git clone https://github.com/minhanhnguy/AI-ielts-writing-evaluation.git
+   git clone https://github.com/minhanhnguy/AI-Ielts-Writing-Evaluation.git
    ```
 
 Navigate into the project directory:
@@ -82,3 +64,11 @@ To start the development server, run:
    ```bash
    npm run dev
    ```
+
+### Step 3: Add API Key to Project
+
+1. In the `/src/app` directory of your project, create a new file called `config.tsx`.
+2. Add the following code, replacing `YOUR_API_KEY` with the API key you copied earlier:
+
+   ```javascript
+   export const API_KEY = "YOUR_API_KEY";

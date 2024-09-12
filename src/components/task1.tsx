@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import * as fs from "fs";
 import { useWindowSize } from "rooks";
 import { Instruction } from "@/components/systemInstructorTask1";
 import { GoogleGenerativeAI } from "@google/generative-AI";
@@ -68,21 +67,16 @@ export function Task1Loader() {
     const { innerWidth, innerHeight, outerHeight, outerWidth } =
         useWindowSize();
     if (!innerWidth || !innerHeight) return;
-    
+
     const cardWidth = innerWidth / 2 - 20;
     const cardHeight = innerHeight - 80;
-
-    const [fileData, setFileData] = useState<{
-        data: string;
-        mimeType: string;
-    } | null>(null);
 
     //set up Gemini
     const apiKey = API_KEY;
     const genAI = new GoogleGenerativeAI(apiKey);
 
     const model = genAI.getGenerativeModel({
-        model: "gemini-1.5-pro",
+        model: "gemini-1.5-flash",
         systemInstruction: Instruction,
     });
 
@@ -94,34 +88,39 @@ export function Task1Loader() {
         responseMimeType: "text/plain",
     };
 
-    const chatSession = model.startChat({
-        generationConfig,
-        history: [],
-    });
-
     //set up Form
     const [Response, setResponse] = useState<JSX.Element | null>(null);
 
     //set up Loading
     const [loading, setLoading] = useState(false);
 
-    function fileToGenerativePart(file: File) {
-        const reader = new FileReader();
+    function fileToGenerativePart(
+        file: File
+    ): Promise<{ data: string; mimeType: string }> {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
 
-        // Read the file as a Data URL (base64 encoded)
-        reader.onloadend = () => {
-            const base64Data = reader.result as string; 
-            setFileData({
-                data: base64Data.split(",")[1], 
-                mimeType: file.type,
-            });
-            console.log(fileData);
-        };
-        if (file instanceof File) {
-            reader.readAsDataURL(file); // Correct usage
-        } else {
-            console.error("Provided input is not a File object");
-        }
+            reader.onloadend = () => {
+                const base64Data = reader.result as string;
+                const fileDataPost = {
+                    data: base64Data.split(",")[1],
+                    mimeType: file.type,
+                };
+
+                console.log("fileDataPost:", fileDataPost);
+                resolve(fileDataPost);
+            };
+
+            reader.onerror = (error) => {
+                reject(error);
+            };
+
+            if (file instanceof File) {
+                reader.readAsDataURL(file);
+            } else {
+                reject(new Error("Provided input is not a File object"));
+            }
+        });
     }
 
     async function handleSubmit(
@@ -129,26 +128,32 @@ export function Task1Loader() {
     ): Promise<void> {
         setLoading(true);
         e.preventDefault();
+
         const form: HTMLFormElement = e.currentTarget;
         const formJson: Record<string, any> = Object.fromEntries(
             new FormData(form).entries()
         );
+
         if (!formJson.Topic) return;
         console.log(formJson.Topic);
-        fileToGenerativePart(formJson.Topic);
-        if(!fileData) return;
-        const result = await model.generateContent([formJson.Essay, {inlineData: fileData}]);
-        const responseText = result.response.text();
-        console.log(responseText);
-        setResponse(formatResponse({output: responseText, loading: false}));
-        setLoading(false);
-        /*const result = await chatSession.sendMessage(
-            "Topic: " + formJson.Topic + "\n Essay: " + formJson.Essay
-        );
-        const responseText = await result.response.text();
-        setResponse(formatResponse({ output: responseText, loading: false }));
-        setLoading(false); // Set loading to false when response is received
-        */
+
+        try {
+            const fileDataPost = await fileToGenerativePart(formJson.Topic);
+
+            const result = await model.generateContent([
+                formJson.Essay,
+                { inlineData: fileDataPost },
+            ]);
+
+            const responseText = await result.response.text();
+            setResponse(
+                formatResponse({ output: responseText, loading: false })
+            );
+        } catch (error) {
+            console.error("Error handling the file:", error);
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -167,7 +172,7 @@ export function Task1Loader() {
                         </div>
                         <div className="grid w-full max-w-sm items-center gap-1.5">
                             <Label htmlFor="picture" className="mb-[5px]">
-                                Picture (.png, .jpg, jpeg, etc)
+                                Picture (.png, .jpg, .jpeg, etc)
                             </Label>
                             <Input id="picture" type="file" name="Topic" />
                         </div>
@@ -179,7 +184,8 @@ export function Task1Loader() {
                         />
                         <Button
                             type="submit"
-                            className="fixed bottom-10 left-button"
+                            className="fixed bottom-10"
+                            style={{ left: cardWidth - 88 }}
                         >
                             Submit
                         </Button>

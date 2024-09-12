@@ -72,7 +72,7 @@ export function Task2Loader() {
     const genAI = new GoogleGenerativeAI(apiKey);
 
     const model = genAI.getGenerativeModel({
-        model: "gemini-1.5-pro",
+        model: "gemini-1.5-flash",
         systemInstruction: Instruction,
     });
 
@@ -141,7 +141,7 @@ export function Task2Loader() {
                         <Button
                             type="submit"
                             className="fixed bottom-10"
-                            style={{left: cardWidth - 88}} 
+                            style={{ left: cardWidth - 88 }}
                         >
                             Submit
                         </Button>

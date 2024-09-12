@@ -2,7 +2,7 @@
 
 This AI is most effective for identifying errors and providing suggestions for improvement, rather than for scoring tasks, as it lacks the human instinct needed for nuanced judgment.
 
-This project uses **ReactJS** and **Vite** for an essay evaluation tool, integrating the **Google Gemini AI API**. Below are step-by-step instructions on how to install the Google Gemini API, set up Node.js and npm, and run this project locally.
+This project uses **ReactJS** and **NextJS** for an essay evaluation tool with the help of **shadcn ui**, integrating the **Google Gemini AI API**. Below are step-by-step instructions on how to install the Google Gemini API, set up Node.js and npm, and run this project locally.
 
 ## Prerequisites
 
@@ -27,7 +27,9 @@ You can download and install Node.js from [here](https://nodejs.org/). npm is bu
 
 [Prompt Used](https://docs.google.com/document/d/1pVRshMAUMMl6l1twTe6zDS6oD3Hgv-4XwXv9Xg_5gnI/edit?usp=sharing)
 
-https://github.com/user-attachments/assets/39f4bc04-cb6b-4e1f-974a-d3b5b70edb39
+
+
+https://github.com/user-attachments/assets/dc87bca1-7fda-4f5d-adc8-c3bc9aaed7b7
 
 
 
@@ -59,7 +61,7 @@ In your terminal, run the following command to clone the project:
 Navigate into the project directory:
 
    ```bash
-   cd AI-ielts-writing-evaluation
+   cd AI-Ielts-Writing-Evaluation
    ```
 
 Run the following command to install the necessary npm packages:
@@ -68,7 +70,7 @@ Run the following command to install the necessary npm packages:
    npm install
    ```
 
-This will install all the dependencies listed in the ```package.json``` file, including React and Vite.
+This will install all the dependencies listed in the ```package.json``` file, including React, and NextJS.
 
 To start the development server, run:
 

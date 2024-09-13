@@ -2,7 +2,7 @@
 
 This AI is most effective for identifying errors and providing suggestions for improvement, rather than for scoring tasks, as it lacks the human instinct needed for nuanced judgment.
 
-This project uses **ReactJS** and **NextJS** for an essay evaluation tool with the help of **shadcn ui**, integrating the **Google Gemini AI API**. Below are step-by-step instructions on how to install the Google Gemini API, set up Node.js and npm, and run this project locally.
+This project is an IELTS essay evaluation tool built with **ReactJS** and **NextJS**. It utilizes **ShadCN UI** and **TailwindCSS** for UI components and styling, and integrates the **Google Gemini AI API** for intelligent analysis.
 
 ## Prerequisites
 
